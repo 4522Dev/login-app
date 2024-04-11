@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Weather Dashboard</h2>
+        <div class="weather-info">
+            <p><strong>Location:</strong> <span id="location"></span></p>
+            <p><strong>Temperature:</strong> <span id="temperature"></span></p>
+            <p><strong>Humidity:</strong> <span id="humidity"></span></p>
+            <p><strong>Weather:</strong> <span id="weather"></span></p>
+        </div>
+        <button onclick="logout()" class="btn-back">Logout</button>
+    </div>
+
+    <script>
+        // Example function to logout (redirect to login page)
+        function logout() {
+            window.location.href = "login.html";
+        }
+
+        // Example function to fetch weather data from API and display on the page
+        fetch('https://api.weather.gov/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('location').innerText = data.location;
+                document.getElementById('temperature').innerText = data.temperature;
+                document.getElementById('humidity').innerText = data.humidity;
+                document.getElementById('weather').innerText = data.weather;
+            })
+            .catch(error => console.error('Error fetching weather data:', error));
+    </script>
+</body>
+</html>
